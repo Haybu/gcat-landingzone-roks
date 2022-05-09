@@ -72,3 +72,28 @@ resource ibm_is_subnet subnet {
 }
 
 ##############################################################################
+
+# Added by Haytham:
+
+################################################
+# Create VPN Subnet
+################################################
+resource "ibm_is_subnet" "vpn_subnet" {
+    name            = "${var.prefix}-vpn-subnet1"
+    resource_group  = var.resource_group_id
+    vpc             = var.vpc_id
+    zone            = "us-south-1"
+    ipv4_cidr_block = "10.88.1.0/24"
+    depends_on = [ibm_is_subnet.subnet]
+}
+
+################################################
+# Create VPN Gateway
+################################################
+resource "ibm_is_vpn_gateway" "vpn_gateway" {
+  name            = "${var.prefix}-vpn-gateway1"
+  resource_group  = var.resource_group_id
+  subnet          = ibm_is_subnet.subnet["${var.prefix}-subnet-a"].id
+  mode            = "route"
+  depends_on = [ibm_is_subnet.subnet]
+}
