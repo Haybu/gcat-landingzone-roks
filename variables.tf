@@ -11,11 +11,13 @@ variable ibmcloud_api_key {
 }
 
 # Comment out if not running in schematics
+/*
 variable TF_VERSION {
  default     = "1.0"
  type        = string
  description = "The version of the Terraform engine that's used in the Schematics workspace."
 }
+*/
 
 variable prefix {
     description = "A unique identifier need to provision resources. Must begin with a letter"
@@ -247,6 +249,7 @@ variable acl_rules {
     }
   ]
 
+  /*
   validation {
     error_message = "ACL rules can only have one of `icmp`, `udp`, or `tcp`."
     condition     = length(distinct(
@@ -254,16 +257,17 @@ variable acl_rules {
       flatten([
         # Check through rules
         for rule in var.acl_rules:
-        # Return true if there is more than one of `icmp`, `udp`, or `tcp`
-        true if length(
-          [
-            for type in ["tcp", "udp", "icmp"]:
-            true if rule[type] != null
-          ]
-        ) > 1
+          # Return true if there is more than one of `icmp`, `udp`, or `tcp`
+          true if length(
+            [
+              for type in ["tcp", "udp", "icmp"]:
+                true if rule[type] != null
+            ]
+          ) > 1
       ])
     )) == 0 # Checks for length. If all fields all correct, array will be empty
   }
+  */
 
   validation {
     error_message = "ACL rule actions can only be `allow` or `deny`."
@@ -343,7 +347,8 @@ variable security_group_rules {
       remote    = "0.0.0.0/0"
     },
   ]
-
+ 
+  /*
   validation {
     error_message = "Security group rules can only have one of `icmp`, `udp`, or `tcp`."
     condition     = length(distinct(
@@ -351,16 +356,17 @@ variable security_group_rules {
       flatten([
         # Check through rules
         for rule in var.security_group_rules:
-        # Return true if there is more than one of `icmp`, `udp`, or `tcp`
-        true if length(
-          [
-            for type in ["tcp", "udp", "icmp"]:
-            true if rule[type] != null
-          ]
-        ) > 1
+          # Return true if there is more than one of `icmp`, `udp`, or `tcp`
+          true if length(
+            [
+              for type in ["tcp", "udp", "icmp"]:
+                true if rule[type] != null
+            ]
+          ) > 1
       ])
     )) == 0 # Checks for length. If all fields all correct, array will be empty
-  }  
+  } 
+  */ 
 
   validation {
     error_message = "Security group rule direction can only be `inbound` or `outbound`."
