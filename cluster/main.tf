@@ -23,7 +23,7 @@ resource ibm_container_vpc_cluster cluster {
     }
   }
 
-  disable_public_service_endpoint = false
+  disable_public_service_endpoint = true
 
   # kms_config {
   #   instance_id      = var.key_id
