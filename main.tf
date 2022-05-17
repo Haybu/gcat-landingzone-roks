@@ -53,6 +53,23 @@ module access_groups {
 }
 
 ##############################################################################
+# by Haytham: Create Key Management Service Instance
+##############################################################################
+
+resource "ibm_resource_instance" "kms_instance" {
+  name              = "${var.prefix}-kms-instance"
+  service           = "kms"
+  plan              = "tiered-pricing"
+  location          = var.region
+  resource_group_id = data.ibm_resource_group.resource_group.id
+  timeouts {
+    create = "15m"
+    update = "15m"
+    delete = "15m"
+  }
+}
+
+##############################################################################
 
 
 ##############################################################################
@@ -79,7 +96,6 @@ resource ibm_resource_instance cos {
 }
 
 ##############################################################################
-
 
 ##############################################################################
 # Create ROKS Cluster
