@@ -304,5 +304,11 @@ variable security_group_rules {
   }
 }
 
+variable "ip_prefixes" {
+   description = "VPC Zones IP prefix"
+  type = any
+  default = {}
+}
+
 
 ##############################################################################

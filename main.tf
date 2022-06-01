@@ -29,6 +29,7 @@ data ibm_resource_group resource_group {
 module multizone_vpc {
   source               = "./multizone-vpc"
   prefix               = var.prefix
+  ip_prefixes          = var.ip_prefixes
   region               = var.region
   resource_group_id    = data.ibm_resource_group.resource_group.id
   classic_access       = var.classic_access
@@ -131,6 +132,8 @@ module roks_cluster {
   tags              = var.tags
   worker_pools      = var.worker_pools
   cos_id            = ibm_resource_instance.cos.id
+  enable_albs       = var.enable_albs
+  only_private_albs = var.only_private_albs
 }
 
 ##############################################################################

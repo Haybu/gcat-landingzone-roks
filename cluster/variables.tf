@@ -166,3 +166,17 @@ variable cos_id {
 }
 
 ##############################################################################
+
+# Haytham: Loadbalancer variables
+
+variable enable_albs {
+    description = "Is the cluster going to use ALBs"
+    type        = bool
+    default     = true
+}
+
+variable only_private_albs {
+    description = "Is the cluster going to use only private ALBs"
+    type        = bool
+    default     = false
+}

@@ -69,6 +69,12 @@ resource ibm_is_subnet subnet {
   network_acl              = var.acl_id
   routing_table            = var.routing_table_id
   public_gateway           = local.public_gateway_list[each.value.zone - 1] == "" || each.value.public_gateway == false ? null : local.public_gateway_list[each.value.zone - 1]
+ timeouts {
+    create = "60m"
+    update = "60m"
+    delete = "60m"
+  }
+
 }
 
 ##############################################################################

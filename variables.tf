@@ -20,7 +20,7 @@ variable TF_VERSION {
 */
 
 variable prefix {
-    description = "A unique identifier need to provision resources. Must begin with a letter"
+    description = "A unique identifier needs to provision resources. Must begin with a letter"
     type        = string
     default     = "jv-eu-dev"
 
@@ -393,6 +393,12 @@ variable security_group_rules {
   }
 }
 
+variable "ip_prefixes" {
+   description = "VPC Zones IP prefix"
+  type = any
+  default = {}
+}
+
 
 ##############################################################################
 
@@ -500,6 +506,18 @@ variable worker_pools {
         ]) == 0
     }
 
+}
+
+variable enable_albs {
+    description = "Is the cluster going to use ALBs"
+    type        = bool
+    default     = true
+}
+
+variable only_private_albs {
+    description = "Is the cluster going to use only private ALBs"
+    type        = bool
+    default     = false
 }
 
 ##############################################################################

@@ -78,6 +78,20 @@ resource ibm_is_public_gateway gateway {
 }
 
 ##############################################################################
+# Haytham: Zones IP Address Prefixes
+##############################################################################
+
+resource "ibm_is_vpc_address_prefix" "address_prefix" {
+    for_each = var.ip_prefixes
+    name = "${var.prefix}-${each.key}"
+    zone = each.value.prefixzone
+    vpc  = ibm_is_vpc.vpc.id
+    cidr = each.value.prefixcidr
+    depends_on = [ibm_is_vpc.vpc]
+    #lifecycle { prevent_destroy = true }
+}
+
+##############################################################################
 
 
 ##############################################################################

@@ -77,3 +77,35 @@ output cluster_private_service_endpoint_port {
 }
 
 ##############################################################################
+#Haytham: added for ALB
+
+output cluster_alb_id {
+    description = "ID of ALB created"
+    value       = module.roks_cluster.alb_id
+}
+
+output cluster_alb_hostname {
+    description = "Hostname of ALB created"
+    value       = module.roks_cluster.alb_hostname
+}
+
+output cluster_alb_name {
+    description = "Name of ALB created"
+    value       = module.roks_cluster.alb_name
+}
+
+
+output cluster_alb_state {
+    description = "State of ALB created"
+    value       = module.roks_cluster.alb_state
+}
+
+output cluster_alb_type {
+    description = "Type of ALB created"
+    value       = module.roks_cluster.alb_type
+}
+
+output cluster_alb_resize {
+    description = "Is ALB resize required"
+    value       = module.roks_cluster.alb_resize
+}
