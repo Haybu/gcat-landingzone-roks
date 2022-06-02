@@ -116,6 +116,8 @@ module subnets {
   vpc_id            = ibm_is_vpc.vpc.id
   resource_group_id = var.resource_group_id
   public_gateways   = local.public_gateways
+  vpn_cidr_block = var.vpn_cidr_block
 }
 
 ##############################################################################
+

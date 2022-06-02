@@ -89,7 +89,7 @@ resource "ibm_is_subnet" "vpn_subnet" {
     resource_group  = var.resource_group_id
     vpc             = var.vpc_id
     zone            = "us-south-1"
-    ipv4_cidr_block = "10.88.1.0/24"
+    ipv4_cidr_block = var.vpn_cidr_block
     depends_on = [ibm_is_subnet.subnet]
 }
 

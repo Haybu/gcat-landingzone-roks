@@ -310,5 +310,10 @@ variable "ip_prefixes" {
   default = {}
 }
 
+variable vpn_cidr_block {
+  description = "CIDR block for VPN"
+  type        = string
+}
+
 
 ##############################################################################

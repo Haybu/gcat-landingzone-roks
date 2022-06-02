@@ -30,6 +30,7 @@ module multizone_vpc {
   source               = "./multizone-vpc"
   prefix               = var.prefix
   ip_prefixes          = var.ip_prefixes
+  vpn_cidr_block       = var.vpn_cidr_block
   region               = var.region
   resource_group_id    = data.ibm_resource_group.resource_group.id
   classic_access       = var.classic_access

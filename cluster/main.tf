@@ -43,6 +43,17 @@ resource ibm_container_vpc_cluster cluster {
 # Haytham: Enable Private ALBs, disable public
 ##############################################################################
 
+# create VPC application load balancer 
+resource ibm_container_vpc_alb_create alb {
+  cluster = ibm_container_vpc_cluster.cluster.id
+  type = "public"
+  zone = "us-south-1"
+  resource_group_id = var.resource_group_id
+  enable = "true"
+  depends_on = [ibm_container_vpc_cluster.cluster]
+}
+
+/**
 resource ibm_container_vpc_alb alb {
   count  = "6" 
   
@@ -55,6 +66,7 @@ resource ibm_container_vpc_alb alb {
       : false
   }"
 }
+**/
 
 ##############################################################################
 

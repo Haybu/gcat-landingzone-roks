@@ -100,9 +100,9 @@ output cluster_alb_state {
     value       = module.roks_cluster.alb_state
 }
 
-output cluster_alb_type {
-    description = "Type of ALB created"
-    value       = module.roks_cluster.alb_type
+output cluster_alb_status {
+    description = "Status of ALB created"
+    value       = module.roks_cluster.alb_status
 }
 
 output cluster_alb_resize {

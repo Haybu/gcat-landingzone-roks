@@ -521,3 +521,9 @@ variable only_private_albs {
 }
 
 ##############################################################################
+
+# Haytham
+variable vpn_cidr_block {
+  description = "CIDR block for VPN"
+  type        = string
+}
