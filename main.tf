@@ -47,12 +47,14 @@ module multizone_vpc {
 # Access Groups
 ##############################################################################
 
+/**
 module access_groups {
   source        = "./iam"
   access_groups = var.access_groups
 
   depends_on = [ data.ibm_resource_group.resource_group ]
 }
+**/
 
 ##############################################################################
 # by Haytham: Create Key Management Service Instance

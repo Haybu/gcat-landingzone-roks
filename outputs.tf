@@ -2,10 +2,12 @@
 # Access Groups
 ##############################################################################
 
+/**
 output access_groups {
     description = "Access group information"
     value       = module.access_groups.access_groups
 }
+*/
 
 ##############################################################################
 
@@ -79,6 +81,7 @@ output cluster_private_service_endpoint_port {
 ##############################################################################
 #Haytham: added for ALB
 
+/**
 output cluster_alb_id {
     description = "ID of ALB created"
     value       = module.roks_cluster.alb_id
@@ -109,3 +112,4 @@ output cluster_alb_resize {
     description = "Is ALB resize required"
     value       = module.roks_cluster.alb_resize
 }
+*/

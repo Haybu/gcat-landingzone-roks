@@ -29,6 +29,7 @@ output private_service_endpoint_port {
 ##############################################################################
 
 # Haytham: app load balancer
+/**
 output alb_id {
     description = "ID of ALB created"
     value       = ibm_container_vpc_alb_create.alb.alb_id
@@ -59,3 +60,4 @@ output alb_resize {
     description = "Is ALB resize required"
     value       = ibm_container_vpc_alb_create.alb.resize
 }
+*/

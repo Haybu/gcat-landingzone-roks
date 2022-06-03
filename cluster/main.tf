@@ -44,6 +44,7 @@ resource ibm_container_vpc_cluster cluster {
 ##############################################################################
 
 # create VPC application load balancer 
+/**
 resource ibm_container_vpc_alb_create alb {
   cluster = ibm_container_vpc_cluster.cluster.id
   type = "public"
@@ -52,6 +53,7 @@ resource ibm_container_vpc_alb_create alb {
   enable = "true"
   depends_on = [ibm_container_vpc_cluster.cluster]
 }
+*/
 
 /**
 resource ibm_container_vpc_alb alb {
