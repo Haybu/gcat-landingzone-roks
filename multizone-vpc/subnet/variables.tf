@@ -56,7 +56,6 @@ variable subnets {
       public_gateway = true
     }]
   }
-
   validation {
       error_message = "Keys for `subnets` must be in the order `zone-1`, `zone-2`, `zone-3`."
       condition     = keys(var.subnets)[0] == "zone-1" && keys(var.subnets)[1] == "zone-2" && keys(var.subnets)[2] == "zone-3"
@@ -114,4 +113,15 @@ variable acl_id {
 variable vpn_cidr_block {
   description = "CIDR block for VPN"
   type        = string
+}
+
+variable vpn_zone {
+  description = "Zone for VPN"
+  type        = string
+}
+
+variable "ip_prefixes" {
+   description = "VPC Zones IP prefix"
+  type = any
+  default = {}
 }

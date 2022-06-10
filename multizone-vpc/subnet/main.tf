@@ -44,12 +44,31 @@ locals {
 # Create New Prefixes
 ##############################################################################
 
+/** do not do this here, and do not set the VPC prefix to 
+the same as the subnet prefix. Use the block below instead.
+*/
+/**
 resource ibm_is_vpc_address_prefix subnet_prefix {
   for_each = local.subnet_object
   name     = each.value.prefix_name
   zone     = each.value.zone_name
   vpc      = var.vpc_id
   cidr     = each.value.cidr
+}
+*/
+
+##############################################################################
+# Haytham: Zones IP Address Prefixes
+##############################################################################
+
+resource "ibm_is_vpc_address_prefix" "subnet_prefix" {
+    for_each = var.ip_prefixes
+    name = "${var.prefix}-${each.key}"
+    zone = each.value.prefixzone
+    vpc  = var.vpc_id
+    cidr = each.value.prefixcidr
+    #depends_on = [ibm_is_vpc.vpc]
+    #lifecycle { prevent_destroy = true }
 }
 
 ##############################################################################
@@ -65,7 +84,7 @@ resource ibm_is_subnet subnet {
   name                     = each.key
   zone                     = each.value.zone_name
   resource_group           = var.resource_group_id
-  ipv4_cidr_block          = ibm_is_vpc_address_prefix.subnet_prefix[each.value.prefix_name].cidr
+  ipv4_cidr_block          = each.value.cidr #ibm_is_vpc_address_prefix.subnet_prefix[each.value.prefix_name].cidr
   network_acl              = var.acl_id
   routing_table            = var.routing_table_id
   public_gateway           = local.public_gateway_list[each.value.zone - 1] == "" || each.value.public_gateway == false ? null : local.public_gateway_list[each.value.zone - 1]
@@ -88,7 +107,7 @@ resource "ibm_is_subnet" "vpn_subnet" {
     name            = "${var.prefix}-vpn-subnet1"
     resource_group  = var.resource_group_id
     vpc             = var.vpc_id
-    zone            = "us-south-1"
+    zone            = var.vpn_zone
     ipv4_cidr_block = var.vpn_cidr_block
     depends_on = [ibm_is_subnet.subnet]
 }
