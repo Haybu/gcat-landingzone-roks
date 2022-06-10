@@ -103,6 +103,8 @@ resource ibm_is_subnet subnet {
 ################################################
 # Create VPN Subnet
 ################################################
+/** is this necessary ? **/
+/**
 resource "ibm_is_subnet" "vpn_subnet" {
     name            = "${var.prefix}-vpn-subnet1"
     resource_group  = var.resource_group_id
@@ -111,6 +113,7 @@ resource "ibm_is_subnet" "vpn_subnet" {
     ipv4_cidr_block = var.vpn_cidr_block
     depends_on = [ibm_is_subnet.subnet]
 }
+*/
 
 ################################################
 # Create VPN Gateway
